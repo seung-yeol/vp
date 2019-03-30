@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">VoipotGuide</string>
+    <string name="user">User</string>
+    <string name="guide">Guide</string>
+    <string name="loginText">보이팟 가이드님,</string>
+    <string name="loginBtnText">새로운 여행 시작</string>
+    <string name="loginBottomText">관광객에게 잊지 못할 추억을 선사하세요.</string>
+    <string name="pleaseMessage">메세지를 입력해주세요.</string>
+</resources>

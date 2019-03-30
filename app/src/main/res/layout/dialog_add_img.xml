@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/addParentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="205dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/b_shape_bottom_dialog">
+
+        <RelativeLayout
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp">
+
+            <LinearLayout
+                android:id="@+id/btnImgExpand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="18dp"
+                    android:background="@drawable/ic_all_files" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:text="전체보기"
+                    android:textColor="@color/indigo"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtCenterSee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="전체보기"
+                android:textColor="@color/indigo"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <ImageButton
+                android:id="@+id/btnUpload"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="25dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_upload" />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvImgs"
+            android:layout_width="match_parent"
+            android:layout_height="137dp"
+            android:layout_below="@+id/top"
+            android:layout_above="@+id/btnDown"
+            android:layout_marginTop="8dp" />
+
+        <ImageButton
+            android:id="@+id/btnDown"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_down" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

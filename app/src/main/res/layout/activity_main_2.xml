@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainViewModel"
+            type="voipot.jnu.conoz.com.voipotguide.ui.main.MainViewModel" />
+
+        <variable
+            name="sharedPagerViewModel"
+            type="voipot.jnu.conoz.com.voipotguide.ui.main.SharedPagerViewModel" />
+    </data>
+
+    <!--ConstraintLayout 연습-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/real_back">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="66dp" />
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="disConnTxt,disConnImg"
+            app:visibleOrGone="@{safeUnbox(mainViewModel.isConnect)}" />
+
+        <TextView
+            android:id="@+id/disConnTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="핫스팟을 연결해 주세요"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/disConnImg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageButton
+            android:id="@+id/disConnImg"
+            android:layout_width="wrap_content"
+            android:layout_height="27.5dp"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/voipot_gray"
+            app:layout_constraintBottom_toTopOf="@id/guideLine"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+        <ImageButton
+            android:id="@+id/imgConn"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:background="@drawable/voipot_blue"
+            app:layout_constraintBottom_toTopOf="@id/guideLine"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:visibleOrGone="@{!safeUnbox(mainViewModel.isConnect)}" />
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="36.5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/language"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/characterImg"
+            android:layout_width="260dp"
+            android:layout_height="250dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/real_character"
+            app:layout_constraintBottom_toTopOf="@id/txtDuration"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="36dp"
+            android:background="@drawable/ic_balloon"
+            app:layout_constraintEnd_toEndOf="@id/characterImg"
+            app:layout_constraintTop_toTopOf="@id/characterImg" />
+
+
+        <ImageButton
+            android:id="@+id/btnVoice"
+            android:layout_width="130dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="130dp"
+            android:onClick="@{mainViewModel::onVoiceBtnClick}"
+            app:imgRes="@{safeUnbox(mainViewModel.voiceBtnImg)}"
+            app:layout_constraintBottom_toTopOf="@+id/gg"
+            app:layout_constraintRight_toRightOf="parent"
+            app:visibleOrGone="@{safeUnbox(mainViewModel.isLoggedIn)}" />
+
+        <com.rd.PageIndicatorView
+            android:id="@+id/pageIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideLine"
+            app:piv_animationType="fill"
+            app:piv_count="2"
+            app:piv_dynamicCount="true"
+            app:piv_interactiveAnimation="true"
+            app:piv_padding="24dp"
+            app:piv_radius="4dp"
+            app:piv_selectedColor="@color/indigo"
+            app:piv_unselectedColor="@color/indigo"
+            app:piv_viewPager="@id/viewPager" />
+
+        <LinearLayout
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/pageIndicatorView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/round_shape_white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/circle_in_circle" />
+
+            <TextView
+                android:id="@+id/txtCurrentNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="1dp"
+                android:text="4"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:text=" / "
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:text="6"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/durationGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="txtDuration,btnExit"
+            app:visibleOrGone="@{safeUnbox(mainViewModel.isLoggedIn)}" />
+
+        <TextView
+            android:id="@+id/txtDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="2018.07.15-07.19"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/gg"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btnExit" />
+
+        <ImageButton
+            android:id="@+id/btnExit"
+            android:layout_width="24dp"
+            android:layout_height="18.5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/ic_exit"
+            android:onClick="@{mainViewModel::onLogoutClick}"
+            app:layout_constraintLeft_toRightOf="@+id/txtDuration"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtDuration" />
+
+        <!--여기서부터 SharedPagerViewModel 영역-->
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/gg"
+            android:layout_width="match_parent"
+            android:layout_height="212dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/dd"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:background="@drawable/top_round_shape"
+            app:layout_constraintLeft_toLeftOf="@id/gg"
+            app:layout_constraintRight_toRightOf="@id/gg"
+            app:layout_constraintTop_toTopOf="@id/gg" />
+
+        <ImageButton
+            android:id="@+id/btnScheduleBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/ic_back"
+            android:onClick="@{sharedPagerViewModel::modifyingModeOnOff}"
+            app:layout_constraintLeft_toLeftOf="@id/gg"
+            app:layout_constraintTop_toTopOf="@id/gg"
+            app:visibleOrGone="@{safeUnbox(sharedPagerViewModel.isModifyingSchedule)}" />
+
+        <ImageButton
+            android:id="@+id/btnExpand"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/message_send"
+            android:onClick="@{sharedPagerViewModel::onExpandClick}"
+            app:layout_constraintRight_toRightOf="@id/gg"
+            app:layout_constraintTop_toTopOf="@id/gg"
+            app:visibleOrGone="@{!safeUnbox(sharedPagerViewModel.isModifyingSchedule)}" />
+
+
+        <TextView
+            android:id="@+id/txtLeftPagerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@{sharedPagerViewModel.leftTab}"
+            android:textColor="@color/indigo"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="@id/gg"
+            app:layout_constraintRight_toLeftOf="@id/txtRightPagerTitle"
+            app:layout_constraintTop_toTopOf="@id/gg" />
+
+
+        <TextView
+            android:id="@+id/txtRightPagerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@{sharedPagerViewModel.rightTab}"
+            android:textColor="@color/indigo"
+            android:textSize="22sp"
+            app:layout_constraintLeft_toRightOf="@+id/txtLeftPagerTitle"
+            app:layout_constraintRight_toRightOf="@id/gg"
+            app:layout_constraintTop_toTopOf="@id/txtLeftPagerTitle" />
+
+        <!--<androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:currentPage="@={safeUnbox(sharedPagerViewModel.currentPage)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/gg"
+            app:layout_constraintRight_toRightOf="@id/gg"
+            app:layout_constraintTop_toBottomOf="@id/dd"
+            app:onPageChangeListener="@{sharedPagerViewModel.onPageSelectedListener}" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

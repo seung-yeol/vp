@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="135dp"
+    android:layout_height="135dp">
+
+    <ImageView
+        android:id="@+id/imgFile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="2dp"
+        android:scaleType="fitXY" />
+
+    <RelativeLayout
+        android:id="@+id/imgEdge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="1dp"
+        android:background="@drawable/edge_rect_indigo"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/imgCircle"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/edge_circle_indigo" />
+
+        <TextView
+            android:id="@+id/txtSequence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/imgCircle"
+            android:layout_alignTop="@+id/imgCircle"
+            android:layout_alignEnd="@+id/imgCircle"
+            android:layout_alignBottom="@+id/imgCircle"
+            android:gravity="center"
+            android:text="27"
+            android:textColor="@color/indigo"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

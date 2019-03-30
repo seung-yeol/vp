@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="scheduleViewModel"
+            type="voipot.jnu.conoz.com.voipotguide.ui.schedule.ScheduleViewModel" />
+
+        <variable
+            name="sharedPagerViewModel"
+            type="voipot.jnu.conoz.com.voipotguide.ui.main.SharedPagerViewModel" />
+
+        <variable
+            name="scheduleAdapterViewModel"
+            type="voipot.jnu.conoz.com.voipotguide.ui.schedule.adapter.ScheduleAdapterViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/fragmentMySchedule"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/scheduleRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bottom"
+            android:layout_alignParentTop="true"
+            app:visibleOrGone="@{safeUnbox(scheduleAdapterViewModel.hasSchedule)}"
+            app:scheduleChange="@{scheduleAdapterViewModel.scheduleData}" />
+
+        <RelativeLayout
+            android:id="@+id/smallLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:visibleOrGone="@{!safeUnbox(scheduleAdapterViewModel.hasSchedule)}">
+
+            <LinearLayout
+                android:id="@+id/leftLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp">
+
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="26dp"
+                    android:text="00:00"
+                    android:textSize="17sp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="16sp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="14dp"
+                    android:background="@color/black" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="11dp"
+                android:layout_toEndOf="@+id/leftLayout"
+                android:hint="@string/newSchedule"
+                android:textColor="#585858"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txtMemo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTitle"
+                android:layout_toEndOf="@+id/leftLayout"
+                android:hint="@string/newMemo"
+                android:textColorHint="@color/gray"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <RelativeLayout
+                android:id="@+id/writeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:visibleOrGone="@{!safeUnbox(sharedPagerViewModel.isModifyingSchedule)}">
+
+                <LinearLayout
+                    android:id="@+id/btnOpen"
+                    android:layout_width="26dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:layout_width="18dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/ic_read" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/txtNumOfMemo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/nMemo"
+                    android:textColor="@color/indigo"
+                    android:textSize="12sp" />
+
+                <ImageButton
+                    android:id="@+id/btnWrite"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="26dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/ic_pen"
+                    android:onClick="@{sharedPagerViewModel::modifyingModeOnOff}"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_above="@id/txtNumOfMemo"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="@color/indigo" />
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/btnAddSchedule"
+                android:layout_width="38.5dp"
+                android:layout_height="38.5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/ic_add"
+                android:paddingTop="10dp"
+                android:onClick="@{scheduleViewModel::onAddScheduleClick}"
+                app:visibleOrGone="@{safeUnbox(sharedPagerViewModel.isModifyingSchedule)}" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

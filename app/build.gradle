@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "voipot.jnu.conoz.com.voipotguide"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildToolsVersion '28.0.3'
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "com.android.support:support-annotations:$rootProject.buildToolVersion"
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation "com.android.support:appcompat-v7:$rootProject.buildToolVersion"
+//    implementation "com.android.support:support-v4:$rootProject.buildToolVersion"
+//    implementation "com.android.support:recyclerview-v7:$rootProject.buildToolVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.androidX"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.androidX"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+
+    //Apache2 license
+    implementation 'com.orhanobut:dialogplus:1.11@aar'
+    implementation 'gun0912.ted:tedpermission:2.2.0'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.1'
+    implementation 'com.opencsv:opencsv:4.2'
+    implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$rootProject.anko_version"
+
+    //koin
+    implementation 'org.koin:koin-android:1.0.2'
+
+    //excel
+    implementation 'org.apache.poi:poi:3.9'
+    implementation 'org.apache.poi:poi-ooxml:3.9'
+
+    //rx
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation "com.jakewharton.rxbinding3:rxbinding:$rootProject.rxBinding3"
+    implementation "com.jakewharton.rxbinding3:rxbinding-appcompat:$rootProject.rxBinding3"
+    //    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxBinding2"
+    //    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rootProject.rxBinding2"
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
+    kapt 'com.github.bumptech.glide:annotations:4.8.0'
+
+    //aac
+    implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle"
+    kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle"
+
+    //dagger2
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+
+    //room
+    implementation "androidx.room:room-rxjava2:2.1.0-alpha04"
+    implementation "androidx.room:room-runtime:2.1.0-alpha04"
+    kapt "androidx.room:room-compiler:2.1.0-alpha04"
+    //    implementation "android.arch.persistence.room:runtime:$rootProject.archComponentVersion"
+    //    implementation "android.arch.persistence.room:rxjava2:$rootProject.archComponentVersion"
+    //    kapt "android.arch.persistence.room:compiler:$rootProject.archComponentVersion"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlin_version"
+}

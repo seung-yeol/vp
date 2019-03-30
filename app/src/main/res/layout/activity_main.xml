@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainViewModel"
+            type="voipot.jnu.conoz.com.voipotguide.ui.main.MainViewModel" />
+
+        <variable
+            name="sharedPagerViewModel"
+            type="voipot.jnu.conoz.com.voipotguide.ui.main.SharedPagerViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/real_back"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/top"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/imgDisconn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+                app:visibleOrGone="@{safeUnbox(mainViewModel.isConnect)}">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="핫스팟을 연결해 주세요"
+                    android:textSize="14sp" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="27.5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/voipot_gray" />
+            </LinearLayout>
+
+
+            <ImageButton
+                android:id="@+id/imgConn"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/voipot_blue" />
+        </RelativeLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="36.5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/language"
+            android:visibility="gone" />
+
+
+        <com.rd.PageIndicatorView
+            android:id="@+id/pageIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/top"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="14dp"
+            app:piv_animationType="fill"
+            app:piv_count="2"
+            app:piv_dynamicCount="true"
+            app:piv_interactiveAnimation="true"
+            app:piv_padding="24dp"
+            app:piv_radius="4dp"
+            app:piv_selectedColor="@color/indigo"
+            app:piv_unselectedColor="@color/indigo"
+            app:piv_viewPager="@id/viewPager" />
+
+        <LinearLayout
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/pageIndicatorView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/round_shape_white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/circle_in_circle" />
+
+            <TextView
+                android:id="@+id/txtCurrentNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="1dp"
+                android:text="4"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:text=" / "
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:text="6"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/centerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="210dp">
+
+            <RelativeLayout
+                android:layout_width="260dp"
+                android:layout_height="250dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="45dp"
+                android:background="@drawable/real_character">
+
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="40dp"
+                    android:background="@drawable/ic_balloon" />
+
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/btnVoice"
+                android:layout_width="130dp"
+                android:layout_height="96dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="130dp"
+                android:onClick="@{mainViewModel::onVoiceBtnClick}"
+                app:imgRes="@{safeUnbox(mainViewModel.voiceBtnImg)}"
+                app:visibleOrGone="@{safeUnbox(mainViewModel.isLoggedIn)}" />
+
+            <LinearLayout
+                android:id="@+id/durationLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                app:visibleOrGone="@{safeUnbox(mainViewModel.isLoggedIn)}">
+
+                <TextView
+                    android:id="@+id/txtDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2018.07.15-07.19"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <ImageButton
+                    android:id="@+id/btnExit"
+                    android:layout_width="24dp"
+                    android:layout_height="18.5dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_exit"
+                    android:onClick="@{mainViewModel::onLogoutClick}" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <!--여기서부터 SharedPagerViewModel 영역-->
+        <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="212dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/top_round_shape"
+                    android:gravity="end|center_vertical" />
+
+                <ImageButton
+                    android:id="@+id/btnScheduleBack"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/ic_back"
+                    android:onClick="@{sharedPagerViewModel::modifyingModeOnOff}"
+                    app:visibleOrGone="@{safeUnbox(sharedPagerViewModel.isModifyingSchedule)}" />
+
+                <ImageButton
+                    android:id="@+id/btnExpand"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center|end"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@drawable/message_send"
+                    android:onClick="@{sharedPagerViewModel::onExpandClick}"
+                    app:visibleOrGone="@{!safeUnbox(sharedPagerViewModel.isModifyingSchedule)}" />
+
+                <LinearLayout
+                    android:id="@+id/liftableLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="11dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtLeftPagerTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{sharedPagerViewModel.leftTab}"
+                        android:textColor="@color/indigo"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtRightPagerTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="@{sharedPagerViewModel.rightTab}"
+                        android:textColor="@color/indigo"
+                        android:textSize="22sp" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical"
+                app:currentPage="@={sharedPagerViewModel.currentPage}"
+                app:onPageChangeListener="@{sharedPagerViewModel.onPageChangeListener}" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:id="@+id/centerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="257dp">
+
+        <RelativeLayout
+            android:layout_width="260dp"
+            android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/real_character">
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/ic_balloon" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/durationLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/txtDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2018.07.15-07.19"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <ImageButton
+                android:id="@+id/btnExit"
+                android:layout_width="24dp"
+                android:layout_height="18.5dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_exit" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:orientation="vertical"
+        android:transitionName="test">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/top_round_shape"
+                android:gravity="end|center_vertical" />
+
+            <ImageButton
+                android:id="@+id/btnScheduleBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/ic_back"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/btnExpand"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center|end"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/message_send" />
+
+            <LinearLayout
+                android:id="@+id/liftableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="11dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtLeftPagerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/guide"
+                    android:textColor="@color/indigo"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtRightPagerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/user"
+                    android:textColor="@color/indigo"
+                    android:textSize="22sp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" />
+    </LinearLayout>
+
+</RelativeLayout>

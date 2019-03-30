@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="scheduleAdapterViewModel"
+            type="voipot.jnu.conoz.com.voipotguide.ui.schedule.adapter.ScheduleAdapterViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/b_shape_bottom_dialog"
+        android:minHeight="140dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/leftLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp">
+
+            <TextView
+                android:id="@+id/txtTime2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:text="00:00"
+                android:textSize="17sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="16sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="14dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rightLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_toEndOf="@+id/leftLayout">
+
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/btnDone"
+                android:hint="제목을 적어주세요."
+                android:text="@={scheduleAdapterViewModel.titleText}"
+                android:minWidth="150dp"
+                android:textColor="#585858"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/editMemo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editTitle"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/btnDone"
+                android:hint="내용을 적어주세요."
+                android:text="@={scheduleAdapterViewModel.memoText}"
+                android:minWidth="150dp"
+                android:textColorHint="@color/gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/btnDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="31dp"
+                android:text="완료"
+                android:textColor="@color/indigo"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:onClick="@{scheduleAdapterViewModel::onAddScheduleClick}"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/btnDown"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/rightLayout"
+            android:layout_centerHorizontal="true"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="17dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/ic_down" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
